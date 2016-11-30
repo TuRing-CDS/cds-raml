@@ -1,0 +1,38 @@
+#%RAML 0.8
+# Basic start raml with tow resources and corresponding methods.
+
+title: Eventlog API
+version: 1.0
+mediaType: application/json
+baseUri: http://api.cavacn.com/{version}
+/streams:
+  description: 这里是描述
+  get:
+    description: 这里是GET的描述
+    responses:
+      200:
+        body:
+          example: |
+            {
+              "result":"XXX"
+            }
+  post:
+    description: 我不描述啥
+    responses:
+      200:
+        body:
+          example: |
+            {
+                "result":"xxx"
+            }
+  /{stream}:
+    description: 这里是子项的描述
+    get:
+      description: 这里是子项GET的描述
+      responses:
+        200:
+          body:
+            example: |
+              {
+                "result":"xxxx"
+              }
