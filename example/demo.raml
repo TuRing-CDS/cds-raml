@@ -16,6 +16,18 @@ baseUri: http://api.cavacn.com/{version}
             {
               "result":"XXX"
             }
+    queryParameters:
+      username:
+        required: true
+        description: |
+          这是用户名描述
+        type: string
+      password:
+        required: true
+        type: string
+      password2:
+        required: true
+        type: string
   post:
     description: 我不描述啥
     responses:
