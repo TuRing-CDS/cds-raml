@@ -1,50 +1,213 @@
 #%RAML 0.8
 # Basic start raml with tow resources and corresponding methods.
 
-title: Eventlog API
-version: 1.0
+title: Data·图灵CDS
+version: 3
 mediaType: application/json
-baseUri: http://api.cavacn.com/{version}
-/streams:
-  description: 这里是描述
+baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
+/market/codes/raf/{market}/{type}:
+  description: 市场涨幅排行
   get:
-    description: 这里是GET的描述
-    responses:
-      200:
-        body:
-          example: |
-            {
-              "result":"XXX"
-            }
+    description: 获取市场涨跌排行
     queryParameters:
-      username:
+      pagenum:
         required: true
-        description: |
-          这是用户名描述
-        type: string
-      password:
+        description: 页码
+      pagesize:
         required: true
-        type: string
-      password2:
-        required: true
-        type: string
-  post:
-    description: 我不描述啥
+        description: 一页展示多少个
     responses:
       200:
         body:
           example: |
-            {
-                "result":"xxx"
-            }
-  /{stream}:
-    description: 这里是子项的描述
-    get:
-      description: 这里是子项GET的描述
-      responses:
-        200:
-          body:
-            example: |
-              {
-                "result":"xxxx"
-              }
+            {"result":["SSE,INDEX,000006","SSE,INDEX,000188","SSE,INDEX,000025","SZSE,INDEX,399995","SSE,INDEX,000925","SZSE,INDEX,399925","SSE,INDEX,000052","SZSE,INDEX,399950","SSE,INDEX,000950","SSE,INDEX,000042","SSE,INDEX,000853","SSE,INDEX,000152","SSE,INDEX,000134","SZSE,INDEX,399986","SSE,INDEX,000951","SSE,INDEX,000076","SZSE,INDEX,399359","SZSE,INDEX,399431","SZSE,INDEX,399951","SSE,INDEX,000959"],"code":200}
+
+/flow:
+  description: 资金流向
+  get:
+    description: 获取概念资金流量
+    queryParameters:
+      codes:
+        required: true
+        description: 代码列表
+    responses:
+      200:
+        body:
+          example: |
+            {}
+
+/minute:
+  description: 分钟数据
+  get:
+    description: 获取分钟数据
+    queryParameters:
+      market:
+        required: true
+        description: 市场
+      type:
+        required: true
+        description: 类型
+      code:
+        required: true
+        description: 代码
+      date:
+        required: false
+        description: 最新交易日
+
+/minutes:
+  description: 分钟数据
+  get:
+    description: 获取分钟数据
+    queryParameters:
+      market:
+        required: true
+        description: 市场
+      type:
+        required: true
+        description: 类型
+      code:
+        required: true
+        description: 代码
+      date:
+        required: false
+        description: 最新交易日
+      time:
+        required: false
+        description: 时间戳
+
+/concept/rate:
+  description: 获取慨念涨跌
+  get:
+    description: 获取慨念涨跌
+    queryParameters:
+      codes:
+        required: true
+        description: 代码列表
+
+/rate:
+  description: 批量获取股票涨跌
+  get:
+    description: 批量获取股票涨跌
+    queryParameters:
+      codes:
+        required: true
+        description: 代码列表
+
+/real:
+  description: 实时数据
+  get:
+    description: 获取实时数据
+    queryParameters:
+      market:
+        required: false
+        description: 市场
+      type:
+        required: false
+        description: 类型
+      code:
+        required: false
+        description: 代码
+      date:
+        required: false
+        description: 最新交易日
+      list:
+        required: false
+        description: 获取多个股票信息，格式 MARKET:TYPE:CODE,MARKET:TYPE:CODE
+
+/real_api:
+  description: 实时数据
+  get:
+    description: 获取实时数据
+    queryParameters:
+      code:
+        required: true
+        description: 代码
+
+/tick:
+  description: 实时数据
+  get:
+    description: 获取实时数据
+    queryParameters:
+      code:
+        required: true
+        description: 代码
+      market:
+        required: true
+        description: 市场
+
+      time:
+        required: false
+        description: 时间
+
+/tick_data:
+  get:
+    description: 获取实时数据
+    queryParameters:
+      market:
+        required: true
+        description: 市场
+      type:
+        required: true
+        description: 类型
+      code:
+        required: true
+        description: 代码
+      begintime:
+        required: false
+        description: 开始时间
+      endtime:
+        required: false
+        description: 结束时间
+
+/ui/app/quotation/menu/industry:
+  get:
+    queryParameters:
+      num:
+        required: false
+        default: 1
+        description: 数量
+
+/ui/app/quotation/menu/industry/list:
+  description: 获取数据 SE.MARKET.INDUSTRY.DATE.SSE.A_STOCK 列表
+  get:
+    queryParameters:
+      market:
+        required: true
+        description: 市场
+      type:
+        required: true
+        description: 类型
+
+
+/ui/app/quotation/menu/industry/name:
+  get:
+    queryParameters:
+      market:
+        required: true
+        description: 市场
+      type:
+        required: true
+        description: 类型
+      tcode:
+        required: true
+        description: 行业代码
+
+/ui/app/quotation/menu/industry/data:
+  get:
+    queryParameters:
+      tcode:
+        required: true
+        description: 行业代码
+
+/ui/app/quotation/menu/industry/rate/list:
+  get:
+    queryParameters:
+      tcode:
+        required: true
+        description: 行业代码
+      pagenum:
+        required: true
+        description: 页数
+      pagesize:
+        required: true
+        description: 一页展示多少个
