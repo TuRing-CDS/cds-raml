@@ -1,0 +1,29 @@
+{
+  "name": "cds-raml",
+  "version": "0.0.2",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TuRing-CDS/cds-raml.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TuRing-CDS/cds-raml/issues"
+  },
+  "homepage": "https://github.com/TuRing-CDS/cds-raml#readme",
+  "dependencies": {
+    "mkdirp": "^0.5.1",
+    "raml2obj": "^3.0.0"
+  },
+  "bin":{
+    "cds-raml":"script/cds-raml.js"
+  }
+}
