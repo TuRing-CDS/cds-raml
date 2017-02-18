@@ -5,7 +5,7 @@ title: Data·图灵CDS
 version: 3
 mediaType: application/json
 baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
-/market/codes/raf/{market}/{type}:
+/market/codes/raf/:market/:type:
   description: 市场涨幅排行
   get:
     description: 获取市场涨跌排行
@@ -163,8 +163,9 @@ baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
   get:
     queryParameters:
       num:
+        type: string
         required: false
-        default: 1
+        default: '1'
         description: 数量
 
 /ui/app/quotation/menu/industry/list:
