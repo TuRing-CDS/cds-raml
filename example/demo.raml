@@ -1,10 +1,10 @@
-#%RAML 0.8
+#%RAML 1.0
 # Basic start raml with tow resources and corresponding methods.
 
 title: Data·图灵CDS
 version: 3
 mediaType: application/json
-baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
+baseUri: https://v3.api.cavacn.com/tuling-rsos/${version}
 /market/codes/raf/:market/:type:
   description: 市场涨幅排行
   get:
@@ -16,11 +16,9 @@ baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
       pagesize:
         required: true
         description: 一页展示多少个
-    responses:
-      200:
-        body:
-          example: |
-            {"result":["SSE,INDEX,000006","SSE,INDEX,000188","SSE,INDEX,000025","SZSE,INDEX,399995","SSE,INDEX,000925","SZSE,INDEX,399925","SSE,INDEX,000052","SZSE,INDEX,399950","SSE,INDEX,000950","SSE,INDEX,000042","SSE,INDEX,000853","SSE,INDEX,000152","SSE,INDEX,000134","SZSE,INDEX,399986","SSE,INDEX,000951","SSE,INDEX,000076","SZSE,INDEX,399359","SZSE,INDEX,399431","SZSE,INDEX,399951","SSE,INDEX,000959"],"code":200}
+    body:
+      example: |
+        {"result":["SSE,INDEX,000006","SSE,INDEX,000188","SSE,INDEX,000025","SZSE,INDEX,399995","SSE,INDEX,000925","SZSE,INDEX,399925","SSE,INDEX,000052","SZSE,INDEX,399950","SSE,INDEX,000950","SSE,INDEX,000042","SSE,INDEX,000853","SSE,INDEX,000152","SSE,INDEX,000134","SZSE,INDEX,399986","SSE,INDEX,000951","SSE,INDEX,000076","SZSE,INDEX,399359","SZSE,INDEX,399431","SZSE,INDEX,399951","SSE,INDEX,000959"],"code":200}
 
 /flow:
   description: 资金流向
@@ -30,11 +28,9 @@ baseUri: https://v3.api.cavacn.com/tuling-rsos/d{version}
       codes:
         required: true
         description: 代码列表
-    responses:
-      200:
-        body:
-          example: |
-            {}
+    body:
+      example: |
+        {}
 
 /minute:
   description: 分钟数据
